@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { buyItem } from '../actions';
 
 
 const AdditionalFeature = props => {
@@ -18,5 +20,7 @@ const AdditionalFeature = props => {
 };
 
 
-
-export default AdditionalFeature
+export default connect(
+  null,
+  {buyItem}
+)(AdditionalFeature)

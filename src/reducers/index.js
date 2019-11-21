@@ -20,17 +20,24 @@ export const initialState = {
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
         case BUY_ITEM: 
-        console.log(action.payload)
             return {
               ...state,
-              car: [
-                ...state.car.features,
-                action.paylod
-
-              ]
+              car: {
+                ...state.car,
+                features: [...state.car.features, action.payload]
+            },
+            additionalFeatures: state.additionalFeatures.filter(feature => feature.id !== action.payload.id)
             }
         case REMOVE_FEATURE:
-            return state
+            return {
+              ...state,
+              car: {
+                ...state.car,
+                features: state.car.features.filter((feature) => feature.id !== action.payload.id)
+              },
+              additionalFeatures: [...state.additionalFeatures, action.payload]
+              
+            }
         default:
             return state
     }
